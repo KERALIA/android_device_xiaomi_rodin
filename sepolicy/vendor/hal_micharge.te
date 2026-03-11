@@ -1,0 +1,50 @@
+type hal_micharge_default, domain;
+type hal_micharge_default_exec, exec_type, vendor_file_type, file_type;
+type hal_micharge_service, service_manager_type, hal_service_type;
+
+attribute hal_micharge;
+attribute hal_micharge_server;
+attribute hal_micharge_client;
+
+typeattribute hal_micharge_default hal_micharge;
+typeattribute hal_micharge_default hal_micharge_server;
+typeattribute hal_micharge_default hal_micharge_client;
+
+hal_server_domain(hal_micharge_default, hal_micharge)
+hal_client_domain(bluetooth, hal_micharge)
+hal_client_domain(nfc, hal_micharge)
+hal_client_domain(system_app, hal_micharge)
+hal_client_domain(system_server, hal_micharge)
+
+init_daemon_domain(hal_micharge_default)
+
+binder_call(hal_micharge_client, hal_micharge_server)
+binder_call(hal_micharge_server, hal_micharge_client)
+allow hal_micharge_client hal_micharge_server:fd use;
+
+allow hal_micharge_client hal_micharge_service:service_manager find;
+allow hal_micharge_server hal_micharge_service:service_manager { add find };
+
+allow hal_micharge_default servicemanager:binder { call transfer };
+allow servicemanager hal_micharge_default:binder { call transfer };
+allow servicemanager hal_micharge_default:dir search;
+allow servicemanager hal_micharge_default:file { read open };
+allow servicemanager hal_micharge_default:process getattr;
+
+allow hal_micharge_default sysfs:dir { read getattr open search };
+allow hal_micharge_default sysfs:file { ioctl read write getattr lock append map open watch watch_reads };
+
+allow hal_micharge_default sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_micharge_default sysfs_battery_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+allow hal_micharge_default sysfs_battery_supply:lnk_file { ioctl read getattr lock map open watch watch_reads };
+
+allow hal_micharge_default sysfs_usb_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_micharge_default sysfs_usb_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+allow hal_micharge_default sysfs_usb_supply:lnk_file { ioctl read getattr lock map open watch watch_reads };
+
+allow hal_micharge_default sysfs_batteryinfo:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_micharge_default sysfs_batteryinfo:file { ioctl read write getattr lock append map open watch watch_reads };
+allow hal_micharge_default sysfs_batteryinfo:lnk_file { ioctl read getattr lock map open watch watch_reads };
+
+neverallow { domain -hal_micharge_server } hal_micharge_service:service_manager add;
+neverallow { domain -hal_micharge_server -hal_micharge_client -atrace -shell -system_app -traceur_app } hal_micharge_service:service_manager find;

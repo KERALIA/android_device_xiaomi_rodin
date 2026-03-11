@@ -1,0 +1,8 @@
+# WiFi
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=120
+
+# Infinity X Device Identity Properties
+ro.product.marketname=Poco X7 Pro
+ro.infinity.soc=MediaTek Dimensity 8400 Ultra
+ro.infinity.camera=50 MP+ 8MP

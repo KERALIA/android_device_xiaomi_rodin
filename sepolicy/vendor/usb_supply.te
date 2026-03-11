@@ -1,0 +1,28 @@
+# USB Supply sysfs type declarations (new types only)
+type sysfs_usb_supply, fs_type, sysfs_type;
+type vendor_sysfs_usb_supply, fs_type, sysfs_type;
+
+# Domain declarations
+type batterysecret, domain;
+type charge_logger, domain;
+type hal_batteryantiaging_default, domain;
+
+# batterysecret
+allow batterysecret sysfs_usb_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow batterysecret sysfs_usb_supply:file { ioctl read getattr lock map open watch watch_reads write };
+
+# charge_logger
+allow charge_logger vendor_sysfs_usb_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow charge_logger vendor_sysfs_usb_supply:file { ioctl read getattr lock map open watch watch_reads };
+
+# hal_batteryantiaging
+allow hal_batteryantiaging_default sysfs_usb_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_batteryantiaging_default sysfs_usb_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+
+# hal_health
+allow hal_health sysfs_usb_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_health sysfs_usb_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+
+# hal_micharge
+allow hal_micharge_default sysfs_usb_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_micharge_default sysfs_usb_supply:file { ioctl read write getattr lock append map open watch watch_reads };

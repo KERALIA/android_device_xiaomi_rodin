@@ -1,0 +1,28 @@
+type sysfs_battery_supply, fs_type, sysfs_type;
+type vendor_sysfs_battery_supply, fs_type, sysfs_type;
+
+allow init sysfs_battery_supply:file setattr;
+
+allow batterysecret sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow batterysecret sysfs_battery_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+
+allow charge_logger vendor_sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow charge_logger vendor_sysfs_battery_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+
+allow hal_batteryantiaging_default sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_batteryantiaging_default sysfs_battery_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+
+allow charger sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow charger sysfs_battery_supply:file { ioctl read getattr lock map open watch watch_reads };
+
+allow hal_health sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_health sysfs_battery_supply:file { ioctl read write getattr lock append map open watch watch_reads };
+
+allow healthd sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow healthd sysfs_battery_supply:file { ioctl read getattr lock map open watch watch_reads };
+
+allow system_app sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow system_app sysfs_battery_supply:file { ioctl read getattr lock map open watch watch_reads };
+
+allow hal_micharge_default sysfs_battery_supply:dir { ioctl read getattr lock open watch watch_reads search };
+allow hal_micharge_default sysfs_battery_supply:file { ioctl read write getattr lock append map open watch watch_reads };
