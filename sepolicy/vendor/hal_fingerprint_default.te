@@ -8,16 +8,11 @@ binder_call(hal_fingerprint_default, hal_touchfeature_xiaomi_default)
 binder_call(hal_fingerprint_default, hal_graphics_composer_default)
 binder_call(hal_fingerprint_default, platform_app)
 
-allow hal_fingerprint_default sysfs_therm:dir r_dir_perms;
-allow hal_fingerprint_default sysfs_therm:file rw_file_perms;
-allow hal_fingerprint_default vendor_displayfeature_sysfs:dir r_dir_perms;
-allow hal_fingerprint_default vendor_displayfeature_sysfs:file rw_file_perms;
+rw_dir_file(hal_fingerprint_default, sysfs_therm)
+rw_dir_file(hal_fingerprint_default, vendor_displayfeature_sysfs)
+rw_dir_file(hal_fingerprint_default, vendor_fingerprint_sysfs)
+rw_dir_file(hal_fingerprint_default, persist_data_file)
 
-allow hal_fingerprint_default vendor_fingerprint_sysfs:dir r_dir_perms;
-allow hal_fingerprint_default vendor_fingerprint_sysfs:file rw_file_perms;
-
-allow hal_fingerprint_default persist_data_file:dir rw_dir_perms;
-allow hal_fingerprint_default persist_data_file:file rw_file_perms;
 allow hal_fingerprint_default input_device:dir r_dir_perms;
 allow hal_fingerprint_default input_device:chr_file rw_file_perms;
 allow hal_fingerprint_default mnt_vendor_file:dir r_dir_perms;
@@ -26,5 +21,19 @@ allow hal_fingerprint_default persist_data_file:file rw_file_perms;
 allow hal_fingerprint_default persist_data_file:file create;
 allow hal_fingerprint_default vendor_displayfeature_device:chr_file rw_file_perms;
 allow hal_fingerprint_default vendor_touchfeature_device:chr_file rw_file_perms;
+allow hal_fingerprint_default sysfs_leds:dir r_dir_perms;
+allow hal_fingerprint_default sysfs_leds:file rw_file_perms;
 
 set_prop(hal_fingerprint_default, vendor_fingerprint_prop)
+
+# 1. fingerprint_vendor_data_file (AOSP type)
+allow hal_fingerprint_default fingerprint_vendor_data_file:dir rw_dir_perms;
+allow hal_fingerprint_default fingerprint_vendor_data_file:file create_file_perms;
+
+# 2. vendor_fingerprint_data_file (vendor custom type)
+allow hal_fingerprint_default vendor_fingerprint_data_file:dir rw_dir_perms;
+allow hal_fingerprint_default vendor_fingerprint_data_file:file create_file_perms;
+
+# 3. vendor_fingerprint_data_file_fpdump (vendor custom type)
+allow hal_fingerprint_default vendor_fingerprint_data_file_fpdump:dir rw_dir_perms;
+allow hal_fingerprint_default vendor_fingerprint_data_file_fpdump:file create_file_perms;

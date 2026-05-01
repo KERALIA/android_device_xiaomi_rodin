@@ -1,92 +1,31 @@
-#
-# Copyright (C) 2024 The LineageOS Project
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-
-# Device Identification
 ro.product.marketname=POCO X7 Pro
 
 # Bluetooth
-ro.vendor.bt.taglogenable=1
+bluetooth.profile.a2dp.source.enabled=true
+bluetooth.profile.asha.central.enabled=true
+bluetooth.profile.avrcp.target.enabled=true
+bluetooth.profile.bap.broadcast.assist.enabled=true
+bluetooth.profile.bap.broadcast.source.enabled=true
+bluetooth.profile.bap.unicast.client.enabled=true
+bluetooth.profile.bas.client.enabled=true
+bluetooth.profile.ccp.server.enabled=true
+bluetooth.profile.csip.set_coordinator.enabled=true
+bluetooth.profile.gatt.enabled=true
+bluetooth.profile.hap.client.enabled=true
+bluetooth.profile.hfp.ag.enabled=true
+bluetooth.profile.hid.host.enabled=true
+bluetooth.profile.map.server.enabled=true
+bluetooth.profile.mcp.server.enabled=true
+bluetooth.profile.opp.enabled=true
+bluetooth.profile.pan.nap.enabled=true
+bluetooth.profile.pan.panu.enabled=true
+bluetooth.profile.sap.server.enabled=false
+bluetooth.profile.vcp.controller.enabled=true
 
-# Radio / Network
-ro.vendor.radio.5g=3
-ro.vendor.radio.features_common=2
-
-# Audio
-ro.vendor.audio.feature.spatial=5
-
-# Display / Graphics
+# System
 ro.surface_flinger.ignore_hdr_camera_layers=true
-persist.sys.support_ultra_hdr=true
-persist.sys.color_sample_enabled=true
-persist.sys.raise_region_sampling_prio=true
-
-# Dalvik VM
-dalvik.vm.ps-min-first-save-ms=150000
-
-# Memory Management
-persist.miui.slide.wmark=70
-persist.miui.launcher.wmark=10
-persist.sys.miui.unfairMemory.enable=true
-persist.sys.dynamicbuffer.max_adjust_num=1
-persist.sys.mimd.reclaim.enable=true
-persist.device_config.mglru_native.lru_gen_config=none
-persist.sys.expend_heap_size=268435456
-persist.sys.expend_min_ram_limit=6
-persist.sys.umms=true
-persist.sys.xring_extm.enable=true
-persist.sys.mms.important_bg_app_count_limit=12,30,40
-persist.sys.mmms.expw=8
-persist.imr.wm.mb.file.high=1700,2100,2560
-persist.sys.imr.default.cpuload.limit=45
-persist.sys.imr.cpuload.limit=45
-persist.sys.imr.memfree.limit=225280
-
-# Process / App Optimization
-persist.sys.stability.PrereadEnable=false
-persist.sys.spc.proc_restart_enable=false
-persist.sys.spc.process.tracker.enable=true
+persist.wm.extensions.enabled=true
+ro.appsearch.feature.enable_isolated_storage=
 persist.sys.usap_pool_enabled=true
 persist.sys.dynamic_usap_enabled=true
-persist.sys.prestart.proc=true
-persist.sys.prestart.feedback.enable=true
-persist.sys.launch_response_optimization.enable=true
-persist.sys.activity_helper.enable=true
-persist.sys.cross_process_jump_response_opt=true
-persist.sys.trim_rendernode.enable=true
-persist.sys.install_resolve_eagerly.enable=false
-persist.sys.notification_launch=true
-
-# TurboSched
-persist.sys.turbosched.local.coreApp.enable=true
-persist.sys.turbosched.local.policy_list=link,priority
-persist.sys.turbosched.local.coreAppTop20.enable=true
-persist.sys.turbosched.local.enable_v2=true
-persist.sys.turbosched.local.csprotect.enable=6
-persist.sys.turbosched.local.viptask.balance.enable=true
-persist.sys.turbosched.local.feature_list=wakeup
-persist.sys.turbosched.home_boost=true
-
-# CPU / GPU / Performance
-persist.sys.computility.cpulevel=4
-persist.sys.computility.gpulevel=4
-persist.sys.computility.version=2025
-persist.sys.perf_turbo_type=19
-persist.sys.enhance_vkpipelinecache.enable=true
-
-# GPS / GNSS
-persist.vendor.gnss.hpLocSetUI=true
-persist.sys.gps.selfRecovery=3
-
-# Google Lens
-ro.com.google.lens.oem_camera_package=com.meitu.meiyancamera
-ro.com.google.lens.oem_image_package=com.google.android.apps.photos
-
-# UI / Window
-ro.config.freeform_window_management=true
-
-# Telephony / Carrier
-ro.telephony.call_compose.supported=true
-ro.miui.carrier.cota=true
+persist.device_config.mglru_native.lru_gen_config=none

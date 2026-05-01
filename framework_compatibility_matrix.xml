@@ -9,6 +9,13 @@
     </interface>
   </hal>
   <hal format="aidl" optional="true">
+    <name>android.hardware.media.c2</name>
+    <interface>
+      <name>IComponentStore</name>
+      <instance>default</instance>
+    </interface>
+  </hal>
+  <hal format="aidl" optional="true">
     <name>android.hardware.radio.config</name>
     <interface>
       <name>IRadioConfig</name>
@@ -180,14 +187,6 @@
     <name>vendor.xiaomi.hardware.mediaeventgatherservice</name>
     <interface>
       <name>IMediaGather</name>
-      <instance>default</instance>
-    </interface>
-  </hal>
-  <hal format="aidl" optional="true">
-    <name>vendor.xiaomi.hardware.micharge</name>
-    <version>2</version>
-    <interface>
-      <name>IMiCharge</name>
       <instance>default</instance>
     </interface>
   </hal>

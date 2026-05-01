@@ -3,8 +3,7 @@ get_prop(mtk_hal_camera, camera_config_prop)
 
 r_dir_file(mtk_hal_camera, camera_persist_file)
 r_dir_file(mtk_hal_camera, persist_data_file)
-allow mtk_hal_camera sysfs_therm:dir r_dir_perms;
-allow mtk_hal_camera sysfs_therm:file rw_file_perms;
+rw_dir_file(mtk_hal_camera, sysfs_therm)
 r_dir_file(mtk_hal_camera, vendor_camera_update_db_file)
 
 allow mtk_hal_camera proc_pressure_mem:file rw_file_perms;
@@ -19,7 +18,7 @@ allow mtk_hal_camera proc_ppb:file { ioctl read write getattr lock append map op
 allow mtk_hal_camera hal_aidlbgservice_service:service_manager find;
 allow mtk_hal_camera hal_dynamic_camera_service:service_manager find;
 allow mtk_hal_camera mtk_hal_mali_platform_default_service:service_manager find;
-allow mtk_hal_camera hal_mtk_uievent_service:service_manager find;
+allow mtk_hal_camera mtk_hal_uievent_service:service_manager find;
 allow mtk_hal_camera hal_graphics_allocator_default_tmpfs:file { ioctl read write getattr lock append map open watch watch_reads };
 allowxperm mtk_hal_camera hal_graphics_allocator_default_tmpfs:file ioctl { 0x6201 };
 allow mtk_hal_camera procfs_memory:file { ioctl read write getattr lock append map open watch watch_reads };
@@ -27,3 +26,10 @@ allow mtk_hal_camera procfs_memory:dir search;
 
 # Neverallows
 dontaudit mtk_hal_camera default_prop:file { read write };
+
+binder_call(mtk_hal_camera, audioserver)
+allow mtk_hal_camera audioserver_service:service_manager find;
+
+# system_data_file: PreviewAlgoFwkT searches /data for AI model/tuning files
+allow mtk_hal_camera system_data_file:dir search;
+
